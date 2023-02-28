@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Exercício 01 - Verificar Tipo de Dado</title>
+</head>
+<body>
+	<script>
+		const userInput = prompt("Insira um valor:");
+
+		const convertedInput = Number(userInput);
+
+		const confirmTypeCheck = confirm("Deseja verificar o tipo do dado informado?");
+
+		if (confirmTypeCheck) {
+			document.write(`O tipo do dado informado é: ${typeof convertedInput}`);
+		} else {
+			document.write("Obrigado por visitar esta página.");
+		}
+	</script>
+</body>
+</html>
