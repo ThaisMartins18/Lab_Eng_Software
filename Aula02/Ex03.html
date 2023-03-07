@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 03 - Palíndromo ou não?</title>
+    <script>
+        
+    </script>
+</head>
+<body>
+    <body>
+        <label for="palindrome">Digite uma palavra ou frase:</label>
+        <input type="text" id="palindrome">
+        <button onclick="checkPalindrome()">Verificar</button>
+    
+        <div class="alert" id="alert">
+            <p></p>
+        </div>
+    
+        <script>
+            function checkPalindrome() {
+                const str = document.getElementById('palindrome').value.toLowerCase().replace(/[^A-Za-z0-9]/g, '');
+                if (str === str.split('').reverse().join('')) {
+                    showAlert('É um palíndromo!');
+                } else {
+                    showAlert('Não é um palíndromo!');
+                }
+            }
+    
+            function showAlert(message) {
+                const alert = document.getElementById('alert');
+                const alertText = alert.querySelector('p');
+                alertText.textContent = message;
+                alert.style.display = 'flex';
+            }
+    
+            window.addEventListener('click', event => {
+                if (event.target === document.getElementById('alert')) {
+                    document.getElementById('alert').style.display = 'none';
+                }
+            });
+        </script>    
+</body>
+</html>
