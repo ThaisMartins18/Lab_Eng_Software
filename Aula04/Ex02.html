@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 02 - To Do List</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>To Do List</h1>
+        <form>
+            <input type="text" id="item" placeholder="Adicionar novo item...">
+            <button type="button" onclick="addItem()">Adicionar</button>
+        </form>
+        <ul id="list">
+        </ul>
+    </div>
+    <script>
+        let list = document.getElementById("list");
+
+        function addItem() {
+            let item = document.getElementById("item").value;
+
+            if (item) {
+                let li = document.createElement("li");
+                li.innerHTML = item + '<button class="delete-button" onclick="deleteItem(this)">Excluir</button>';
+                list.appendChild(li);
+                document.getElementById("item").value = "";
+            }
+        }
+
+        function deleteItem(element) {
+            element.parentNode.remove();
+        }
+
+        document.querySelector('form').addEventListener('submit', addItem);
+        function moveUp() {
+            const selectedTask = document.querySelector('.selected');
+            if (selectedTask && selectedTask.previousSibling) {
+                list.insertBefore(selectedTask, selectedTask.previousSibling);
+            }
+        }
+
+        function moveDown() {
+            const selectedTask = document.querySelector('.selected');
+            if (selectedTask && selectedTask.nextSibling) {
+                list.insertBefore(selectedTask.nextSibling, selectedTask);
+            }
+        }
+        document.addEventListener('keydown', (event) => {
+            if (event.code === 'ArrowUp') {
+                moveUp();
+            } else if (event.code === 'ArrowDown') {
+                moveDown();
+            }
+        });
+        list.addEventListener('click', (event) => {
+            if (event.target.tagName === 'li') {
+                const selectedTask = document.querySelector('.selected');
+                if (selectedTask) {
+                    selectedTask.classList.remove('selected');
+                }
+                event.target.classList.add('selected');
+            }
+        });
+
+        let sortable = Sortable.create(list);
+
+    </script>
+</body>
+
+</html>

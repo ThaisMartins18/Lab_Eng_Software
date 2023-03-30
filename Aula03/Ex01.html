@@ -1,0 +1,54 @@
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 01 - Adicionar itens em um array</title>
+    <style>
+        ol {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            padding: 10px;
+            margin-bottom: 5px;
+            background-color: #f1c0f5;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Adicionar itens em um array</h1>
+    <form>
+        <label for="item">Digite um item:</label>
+        <input type="text" id="item" name="item">
+        <input type="submit" value="Adicionar">
+    </form>
+    <h2>Itens adicionados:</h2>
+    <ol id="lista"></ol>
+    <script>
+        let itens = [];
+
+        addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            let item = document.getElementById("item").value;
+            itens.push(item);
+            itens.sort();
+            exibirLista();
+            document.getElementById("item").value = "";
+           
+            function exibirLista() {
+                let lista = document.getElementById("lista");
+                lista.innerHTML = "";
+                for (let i = 0; i < itens.length; i++) {
+                    let item = itens[i];
+                    let li = document.createElement("li");
+                    li.appendChild(document.createTextNode(item));
+                    lista.appendChild(li);
+                }
+            }
+        })
+    </script>
+</body>
+</html>
